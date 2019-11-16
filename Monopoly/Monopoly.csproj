@@ -43,8 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Case.cs" />
+    <Compile Include="BuyableCase.cs" />
+    <Compile Include="ChanceCard.cs" />
+    <Compile Include="CommunityFund.cs" />
+    <Compile Include="FreeParking.cs" />
+    <Compile Include="GoToJail.cs" />
+    <Compile Include="Jail.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Station.cs" />
+    <Compile Include="Street.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
