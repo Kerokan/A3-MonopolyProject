@@ -8,5 +8,6 @@ namespace Monopoly
 {
     class Station : BuyableCase
     {
+        public Station()
     }
 }
