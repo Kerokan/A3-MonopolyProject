@@ -8,6 +8,6 @@ namespace Monopoly
 {
     abstract class Case
     {
-        readonly string name;
+        public string name;
     }
 }

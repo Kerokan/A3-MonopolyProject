@@ -8,7 +8,7 @@ namespace Monopoly
 {
     abstract class BuyableCase : Case
     {
-        readonly int buyPrice;
+        public int buyPrice;
         // Player owner;
 
         // abstract public void accept(Player p); // Visitor Pattern

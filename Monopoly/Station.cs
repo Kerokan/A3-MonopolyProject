@@ -8,6 +8,10 @@ namespace Monopoly
 {
     class Station : BuyableCase
     {
-        public Station(string name)
+        public Station(string _name, int _buyPrice)
+        {
+            this.name = _name;
+            this.buyPrice = _buyPrice;
+        }
     }
 }
