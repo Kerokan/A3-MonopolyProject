@@ -8,6 +8,11 @@ namespace Monopoly
 {
     abstract class Case
     {
-        public string name;
+        protected string name;
+
+        public void Effect(Player p)
+        {
+            return;
+        }
     }
 }
