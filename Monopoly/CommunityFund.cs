@@ -8,5 +8,9 @@ namespace Monopoly
 {
     class CommunityFund : Case
     {
+        public CommunityFund()
+        {
+            Name = "Community Fund";
+        }
     }
 }

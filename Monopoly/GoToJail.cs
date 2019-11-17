@@ -8,5 +8,11 @@ namespace Monopoly
 {
     class GoToJail : Case
     {
+        override public void Effect(Player p)
+        {
+            Console.WriteLine("Le joueur {0} va directement en prison.", p.Name); ;
+            p.inJail = true;
+            p.teleport(9);
+        }
     }
 }

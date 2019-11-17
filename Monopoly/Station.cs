@@ -8,10 +8,21 @@ namespace Monopoly
 {
     class Station : BuyableCase
     {
-        public Station(string _name, int _buyPrice)
+        public Station(string _name, Borough _borough)
         {
-            this.name = _name;
-            this.buyPrice = _buyPrice;
+            this.Name = _name;
+            this.BuyPrice = 20000;
+            this.Owner = null;
+            this.MortgagePrice = (uint)10000;
+            this.Borough = _borough;
+        }
+
+        override public void Effect(Player p)
+        {
+            if(this.Owner == null)
+            {
+                Board.PurchaseProposal(p, this);
+            }
         }
     }
 }

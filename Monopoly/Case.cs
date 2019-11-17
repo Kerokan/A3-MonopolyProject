@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Monopoly
 {
-    abstract class Case
+    public abstract class Case
     {
-        protected string name;
+        private string name;
 
-        public void Effect(Player p)
+        public string Name { get => name; set => name = value; }
+
+        virtual public void Effect(Player p)
         {
             return;
         }

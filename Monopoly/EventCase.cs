@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace Monopoly
 {
-    class FreeParking : Case
+    class EventCase : Case
     {
-        override public void Effect(Player p)
+        public uint taxe;
+
+        public EventCase(uint _taxe, string _name)
         {
-            Console.WriteLine("Rien ne se passe..");
+            taxe = _taxe;
+            Name = _name;
         }
     }
 }

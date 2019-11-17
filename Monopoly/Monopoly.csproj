@@ -49,6 +49,8 @@
     <Compile Include="BuyableCase.cs" />
     <Compile Include="ChanceCard.cs" />
     <Compile Include="CommunityFund.cs" />
+    <Compile Include="Company.cs" />
+    <Compile Include="EventCase.cs" />
     <Compile Include="FreeParking.cs" />
     <Compile Include="GoToJail.cs" />
     <Compile Include="Jail.cs" />

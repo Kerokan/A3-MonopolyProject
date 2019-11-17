@@ -8,5 +8,9 @@ namespace Monopoly
 {
     class ChanceCard : Case
     {
+        public ChanceCard()
+        {
+            Name = "Chance Card";
+        }
     }
 }
