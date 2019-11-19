@@ -10,8 +10,16 @@ namespace Monopoly
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World 4");
-            Console.WriteLine("Test");
+            Player player = new Player("Thibault");
+            ChanceCard cc = new ChanceCard();
+            cc.Effect(player);
+            cc.Effect(player);
+
+            ChanceCard cc2 = new ChanceCard();
+            cc2.Effect(player);
+            cc2.Effect(player);
+
+            Console.ReadKey();
         }
     }
 }

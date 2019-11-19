@@ -20,7 +20,7 @@ namespace Monopoly
 
         public Player(string _name)
         {
-            board = Board.Instance;
+           // board = Board.Instance;
             name = _name;
             position = 0;
             money = 150000;
