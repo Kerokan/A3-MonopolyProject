@@ -10,16 +10,7 @@ namespace Monopoly
     {
         static void Main(string[] args)
         {
-            Player player = new Player("Thibault");
-            ChanceCard cc = new ChanceCard();
-            cc.Effect(player);
-            cc.Effect(player);
-
-            ChanceCard cc2 = new ChanceCard();
-            cc2.Effect(player);
-            cc2.Effect(player);
-
-            Console.ReadKey();
+            Board board = Board.Instance;
         }
     }
 }

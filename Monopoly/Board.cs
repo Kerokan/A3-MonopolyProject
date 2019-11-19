@@ -29,14 +29,17 @@ namespace Monopoly
             while (!verif)
             {
                 string response = Console.ReadLine();
-                if (!"2456789".Contains(response[0]))
+                try
                 {
-                    Console.WriteLine("Reponse invalide, veuillez reessayer");
+                    nbPlayers = int.Parse(response);
+                    if(nbPlayers < 10 && nbPlayers > 1)
+                        verif = true;
+                    else
+                        Console.WriteLine("Veuillez rentrer un nombre entre 2 et 9");
                 }
-                else
+                catch 
                 {
-                    nbPlayers = response[0];
-                    verif = true;
+                    Console.WriteLine("Veuillez rentrer un nombre entre 2 et 9");
                 }
             }
 

@@ -14,6 +14,7 @@ namespace Monopoly
         public Borough(int _length)
         {
             length = _length;
+            cases = new List<Case>();
         }
 
         public Player Monopoly()
