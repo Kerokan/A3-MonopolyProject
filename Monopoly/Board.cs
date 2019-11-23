@@ -305,5 +305,21 @@ namespace Monopoly
                 bc.Owner = winner;
             }
         }
+        static void Failure(Player p)
+        {
+            Console.WriteLine("{0} a perdu.", p.Name);
+            Player[] players2 = new Player[players.Length - 1];
+            int j = 0;
+            for (int i = 0; i < players.Length; i++)
+            {
+                if (!players[i].Equals(p))
+                {
+                    players2[j] = players[i];
+                    j++;
+                }
+            }
+
+            players = players2;
+        }
     }
 }
