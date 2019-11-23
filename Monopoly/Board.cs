@@ -11,6 +11,7 @@ namespace Monopoly
         private static readonly Lazy<Board> lazy = new Lazy<Board> (() => new Board());
         private static Case[] cases = new Case[40];
         private static Player[] players;
+        public Dice dices;
 
         public static Board Instance 
         {
@@ -54,6 +55,7 @@ namespace Monopoly
                 players[i] = new Player(name);
             }
 
+            dices = new Dice();
             // Creation of the board / cases / Borough
             cases[0] = new Start();
             Borough DBlue = new Borough(2);

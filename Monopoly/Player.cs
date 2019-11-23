@@ -14,6 +14,7 @@ namespace Monopoly
         public ushort position;
         private uint money;
         public bool inJail;
+        public List<BuyableCase> possessions;
 
         public string Name { get => name; set => name = value; }
         public uint Money { get => money; set => money = value; }
@@ -25,6 +26,29 @@ namespace Monopoly
             position = 0;
             money = 150000;
             inJail = false;
+            possessions = new List<BuyableCase>();
+        }
+
+        /// <summary>
+        /// Roll the dices, move the player and trigger effetcs
+        /// If it's a double, play again
+        /// Player will go to jail after 3 consecutive double
+        /// </summary>
+        public void Play() 
+        {
+            ushort[] dices;
+            ushort combo;
+
+            combo = 3;
+            do
+            {
+                dices = board.dices.Roll();
+                combo--;
+                this.Forward((ushort)(dices[0] + dices[1]));
+            }
+            while (dices[0] == dices[1]);
+            if (combo == 0)
+                this.teleport(30);
         }
 
         public void Backward(ushort value) 
