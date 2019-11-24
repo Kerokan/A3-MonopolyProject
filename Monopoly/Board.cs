@@ -197,16 +197,19 @@ namespace Monopoly
                             {
                                 participate[i] = true;
                                 participants++;
+                                verif = true;
                             }
                             else
                             {
                                 Console.WriteLine("Vous ne possedez pas suffisamment d'argent.");
                                 participate[i] = false;
+                                verif = true;
                             }
                             break;
 
                         case 'n':
                             participate[i] = false;
+                            verif = true;
                             break;
 
                         default:
@@ -266,6 +269,7 @@ namespace Monopoly
                                     {
                                         Console.WriteLine("Votre offre a bien ete enregistree. Vous etes le nouveau leader.");
                                         leader = players[actualParticipant];
+                                        verif = true;
                                     }
                                     else
                                     {
@@ -307,7 +311,7 @@ namespace Monopoly
                 bc.Owner = winner;
             }
         }
-        static void Failure(Player p)
+        public static void Failure(Player p)
         {
             Console.WriteLine("{0} a perdu.", p.Name);
             Player[] players2 = new Player[players.Length - 1];

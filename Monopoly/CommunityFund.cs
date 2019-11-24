@@ -9,22 +9,17 @@ namespace Monopoly
     class CommunityFund : Case
     {
         protected Dictionary<int, Func<Player, bool>> myDicti = new Dictionary<int, Func<Player, bool>>();
+        static Random rand = new Random();
         public CommunityFund()
         {
             Name = "Community Fund";
-            try
-            {
-                
-            }catch(Exception e)
-            {
-
-            }
+            
         }
 
         override public void Effect(Player p)
         {
-            Random rand = new Random();
-            
+            int effect = rand.Next(1, 16);
+            myDicti[effect](p);
         }
 
         

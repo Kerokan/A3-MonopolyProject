@@ -12,7 +12,7 @@ namespace Monopoly
         {
             Console.WriteLine("Le joueur {0} va directement en prison.", p.Name); ;
             p.inJail = true;
-            p.teleport(9);
+            p.teleport(10);
         }
     }
 }

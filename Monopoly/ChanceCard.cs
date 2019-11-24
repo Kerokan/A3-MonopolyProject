@@ -38,65 +38,76 @@ namespace Monopoly
 
         public bool GoToStart(Player p)
         {
-            Console.WriteLine("GoToStart");
+            Console.WriteLine("Carte chance : Allez à la Case Départ.");
+            p.teleport(0);
             return true;
         }
 
         public bool GoToJail(Player p)
         {
-            Console.WriteLine("GoToJail");
+            Console.WriteLine("Carte chance : Allez directement en prison.");
+            p.inJail = true;
+            p.teleport(10);
             return true;
         }
 
-        public bool GoToVillette(Player P)
+        public bool GoToVillette(Player p)
         {
-            Console.WriteLine("GoToVillette");
+            Console.WriteLine("Carte chance : Allez au Boulevard de la Villette.");
+            ushort x = (ushort)((11 - p.position) % 40);
+            p.Forward(x);
             return true;
         }
 
         public bool FineDrunk(Player p)
         {
-            // - 2 000 Euros
-            Console.WriteLine("FineDrunk");
+            Console.WriteLine("Carte chance : Vous avez une amende de 2 000 euros pour conduite en état d'ivresse.");
+            p.Taxe(2000);
             return true;
         }
 
         public bool CrosswordPuzzle(Player p)
         {
-            // + 10 000 Euros
-            Console.WriteLine("CrosswordPuzzle");
+            Console.WriteLine("Carte chance : Vous gagnez le premier prix de mots-croisées : 10 000 euros.");
+            p.Money += 10000;
             return true;
         }
 
         public bool GoToHenriMartin(Player p)
         {
-            Console.WriteLine("GoToHenriMartin");
+            Console.WriteLine("Carte chance : Allez à l'Avenue Henri Martin.");
+            ushort x = (ushort)((24 - p.position) % 40);
+            p.Forward(x);
             return true;
         }
 
         public bool GoToLyon(Player p)
         {
-            Console.WriteLine("GoToLyon");
+            Console.WriteLine("Carte chance : Allez à la Gare de Lyon.");
+            ushort x = (ushort)((15 - p.position) % 40);
+            p.Forward(x);
             return true;
         }
 
         public bool FineSpeeding(Player p)
         {
-            // - 1 500 Euros
-            Console.WriteLine("FineSpeeding");
+            Console.WriteLine("Carte chance : Vous avez une amende de 2 000 euros pour excès de conduite");
+            p.Taxe(1500);
             return true;
         }
 
         public bool SchoolFees(Player p)
         {
-            // - 15 000 Euros
-            Console.WriteLine("SchoolFees");
+            //On laisse ? -> De base : Frais de scolarité
+            Console.WriteLine("Carte chance : Vous payez les frais de l'ESILV pour vos enfants : 15000 euros.");
+            p.Taxe(15000);
             return true;
         }
 
         public bool Backward3(Player p)
         {
-            Console.WriteLine("Backward3");
+            Console.WriteLine("Carte chance : Vous reculez de 3 cases.");
+            p.Backward(3);
             return true;
         }
 
@@ -109,14 +120,16 @@ namespace Monopoly
 
         public bool Loan(Player p)
         {
-            // + 15 000 Euros
-            Console.WriteLine("Loan");
+            Console.WriteLine("Carte chance : Votre prêt rapporte ! Vous gagnez 15 000 euros");
+            p.Money += 15000;
             return true;
         }
 
         public bool GoToPeace(Player p)
         {
-            Console.WriteLine("GoToPeace");
+            Console.WriteLine("Carte chance : Allez à la Rue de la Paix.");
+            ushort x = (ushort)((39 - p.position) % 40);
+            p.Forward(x);
             return true;
         }
 
@@ -129,8 +142,8 @@ namespace Monopoly
 
         public bool BankToYou(Player p)
         {
-            // + 5 000 Euros
-            Console.WriteLine("BankToYou");
+            Console.WriteLine("Carte chance : La Banque vous doit 5 000 euros.");
+            p.Money += 5000;
             return true;
         }
     }

@@ -60,12 +60,24 @@ namespace Monopoly
         {
             if (position + value > 39)
                 money += 20000;
-            this.teleport((ushort)(position + value));
+            this.teleport((ushort)((position + value)%40));
         }
         public void teleport(ushort position)
         {
             this.position = (ushort)(position % 40);
             board.PositionUpdate(this);
+        }
+
+        public void Taxe(uint amount)
+        {
+            if(this.money >= amount)
+            {
+                this.money = this.money - amount;
+            }
+            else
+            {
+                Board.Failure(this);
+            }
         }
     }
 }
