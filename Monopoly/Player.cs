@@ -46,7 +46,7 @@ namespace Monopoly
                 combo--;
                 this.Forward((ushort)(dices[0] + dices[1]));
             }
-            while (dices[0] == dices[1]);
+            while (dices[0] == dices[1] || combo < 1);
             if (combo == 0)
                 this.teleport(30);
         }
