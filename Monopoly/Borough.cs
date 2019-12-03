@@ -17,9 +17,9 @@ namespace Monopoly
             cases = new List<Case>();
         }
 
-        public Player Monopoly()
+        public bool Monopoly()
         {
-            return null;
+            return false;
             // TODO : Verify if the borough is owned by the same player on all the cases
         }
     }

@@ -11,6 +11,9 @@ namespace Monopoly
         static void Main(string[] args)
         {
             Board board = Board.Instance;
+
+            Board.players[0].Forward(5);
+            Console.ReadKey();
         }
     }
 }

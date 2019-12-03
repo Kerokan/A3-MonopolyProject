@@ -10,8 +10,8 @@ namespace Monopoly
     {
         private static readonly Lazy<Board> lazy = new Lazy<Board> (() => new Board());
         private static Case[] cases = new Case[40];
-        private static Player[] players;
-        public Dice dices;
+        public static Player[] players;
+        public static Dice dices;
 
         public static Board Instance 
         {
@@ -137,7 +137,7 @@ namespace Monopoly
             Blue.cases.Add(cases[39]);
         }
 
-        public void PositionUpdate(Player player) 
+        public static void PositionUpdate(Player player) 
         {
             cases[player.position].Effect(player);
         }
@@ -149,22 +149,23 @@ namespace Monopoly
             while (!verif)
             {
                 string response = Console.ReadLine();
-                switch (response[0])
+                switch (response)
                 {
-                    case 'y':
+                    case "y":
                         if (bc.Achat(p))
                         {
-                            Console.WriteLine("Felicitations, {0} ! Vous avez acheter cette propriete. Votre solde actuel est de {1}", p.Name, p.Money);
+                            Console.WriteLine("Felicitations, {0} ! Vous avez achete cette propriete. Votre solde actuel est de {1}", p.Name, p.Money);
                         }
                         else
                         {
                             Console.WriteLine("Vous n'avez pas suffisamment d'argent. Les encheres vont commencer...");
+                            Console.ReadKey();
                             Board.Auctions(bc);
                         }
                         verif = true;
                         break;
 
-                    case 'n':
+                    case "n":
                         Console.WriteLine("Dans ce cas, les encheres vont commencer...");
                         Board.Auctions(bc);
                         verif = true;
@@ -179,34 +180,41 @@ namespace Monopoly
 
         static void Auctions(BuyableCase bc)
         {
+            Console.Clear();
+            Console.WriteLine("========");
+            Console.WriteLine("ENCHERES");
+            Console.WriteLine("========");
             uint actualPrice = bc.BuyPrice / 2;
-            Console.WriteLine("Encheres : Le prix de depart est {0}", actualPrice);
+            Console.WriteLine("Le prix de depart est {0}", actualPrice);
             bool[] participate = new bool[players.Length];
             int participants = 0;
-            for(int i = 0; i < players.Length - 1; i++)
+            for(int i = 0; i < players.Length; i++)
             {
                 Console.WriteLine("{0}, voulez-vous participer ? [y]Oui [n]Non", players[i].Name);
                 bool verif = false;
                 while (!verif)
                 {
                     string response = Console.ReadLine();
-                    switch (response[0])
+                    switch (response)
                     {
-                        case 'y':
+                        case "y":
                             if(players[i].Money > actualPrice)
                             {
                                 participate[i] = true;
                                 participants++;
+                                verif = true;
                             }
                             else
                             {
                                 Console.WriteLine("Vous ne possedez pas suffisamment d'argent.");
                                 participate[i] = false;
+                                verif = true;
                             }
                             break;
 
-                        case 'n':
+                        case "n":
                             participate[i] = false;
+                            verif = true;
                             break;
 
                         default:
@@ -236,6 +244,10 @@ namespace Monopoly
                 {
                     if (participate[actualParticipant])
                     {
+                        Console.Clear();
+                        Console.WriteLine("========");
+                        Console.WriteLine("ENCHERES");
+                        Console.WriteLine("========");
                         Console.WriteLine("Le leader actuel est {0} avec une offre de {1} euros", leader.Name, actualPrice);
                         Console.WriteLine("{0}, combien voulez-vous proposer pour {1} ? (Entrez 0 pour abandonner l'enchere)", players[actualParticipant].Name, bc.Name);
                         Console.WriteLine("Pour rappel, votre solde actuel est de {0}", players[actualParticipant].Money);
@@ -266,6 +278,8 @@ namespace Monopoly
                                     {
                                         Console.WriteLine("Votre offre a bien ete enregistree. Vous etes le nouveau leader.");
                                         leader = players[actualParticipant];
+                                        actualPrice = (uint)offer;
+                                        verif = true;
                                     }
                                     else
                                     {
@@ -279,6 +293,7 @@ namespace Monopoly
                             }
                         }
                         actualParticipant = (actualParticipant + 1) % players.Length;
+                        Console.ReadKey();
                     }
                     else
                     {
@@ -295,14 +310,14 @@ namespace Monopoly
             if(participants == 1)
             {
                 Player winner = null;
-                for(int i = 0; i < participate.Length - 1; i++)
+                for(int i = 0; i < participate.Length; i++)
                 {
                     if (participate[i])
                     {
                         winner = players[i];
                     }
                 }
-                Console.WriteLine("L'enchere a ete remportee par {0}, qui devient le proprietaire de {1} pour le prix de {2}", winner.Name, bc.Name, actualPrice);
+                Console.WriteLine("L'enchere a ete remportee par {0}, qui devient le proprietaire de {1} pour le prix de {2} euros", winner.Name, bc.Name, actualPrice);
                 winner.Money = winner.Money - actualPrice;
                 bc.Owner = winner;
             }

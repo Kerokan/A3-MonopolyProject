@@ -42,13 +42,28 @@ namespace Monopoly
             combo = 3;
             do
             {
-                dices = board.dices.Roll();
+                dices = Board.dices.Roll();
                 combo--;
+                Console.WriteLine("Vous avez fait {0}", dices[0] + dices[1]);
+                if(dices[0] == dices[1])
+                {
+                    Console.WriteLine("C'est un double !");
+                    if(combo >= 0)
+                    {
+                        Console.WriteLine("Vous allez rejouer.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Vous allez directement en prison.");
+                    }
+                }
                 this.Forward((ushort)(dices[0] + dices[1]));
             }
-            while (dices[0] == dices[1] || combo < 1);
+            while (dices[0] == dices[1] && combo >= 1);
             if (combo == 0)
+            {
                 this.teleport(30);
+            }
         }
 
         public void Backward(ushort value) 
@@ -65,7 +80,75 @@ namespace Monopoly
         public void teleport(ushort position)
         {
             this.position = (ushort)(position % 40);
-            board.PositionUpdate(this);
+            Board.PositionUpdate(this);
+        }
+
+        public void Turn()
+        {
+            bool verif1 = false;
+            bool verif2 = false;
+            Console.Clear();
+            Console.WriteLine("C'est au tour de {0}", this.Name);
+            while (!verif1)
+            {
+                this.Summary();
+                Console.WriteLine("Que voulez-vous faire ?");
+                Console.WriteLine("1. Lancer les dés.");
+                Console.WriteLine("2. Consulter vos propriétés");
+                Console.WriteLine("3. Proposer un échange à un autre joueur");
+                Console.WriteLine("\nEntrez votre choix : ");
+                string answer = Console.ReadLine();
+                switch (answer)
+                {
+                    case "1":
+                        this.Play();
+                        verif1 = true;
+                        break;
+
+                    case "2":
+                        this.Consult();
+                        break;
+
+                    case "3":
+                       // this.Exchange();
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            Console.WriteLine("Votre tour est termine. Veuillez appuyer sur une touche pour passer au joueur suivant.");
+            Console.ReadKey();
+
+        }
+
+        public void Summary()
+        {
+            int propDisp = 0;
+            int propMort = 0;
+            foreach(BuyableCase bc in possessions)
+            {
+                if (bc.IsMort)
+                {
+                    propMort++;
+                }
+                else
+                {
+                    propDisp++;
+                }
+            }
+            Console.WriteLine("Joueur {0} \n\nArgent disponible {1}\nProporietes disponibles : {2}\nProprietes hypothequees : {3}\n\n",this.Name, this.Money, propDisp, propMort);
+        }
+
+        public void Consult()
+        {
+            Console.WriteLine("Liste des proprietes de {0}", this.Name);
+            possessions.Sort();
+            foreach(BuyableCase bc in this.possessions)
+            {
+                bc.Display();
+            }
+
         }
     }
 }
