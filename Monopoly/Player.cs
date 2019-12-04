@@ -142,13 +142,43 @@ namespace Monopoly
 
         public void Consult()
         {
-            Console.WriteLine("Liste des proprietes de {0}", this.Name);
+            Console.Clear();
+            Console.WriteLine("Liste des proprietes de {0} :", this.Name);
+            Console.WriteLine("Les proprietes en rouge sont hypothequees \n");
             possessions.Sort();
+            int i = 1;
             foreach(BuyableCase bc in this.possessions)
             {
+                Console.Write("{0}. ", i);
+                i++;
                 bc.Display();
             }
-
+            Console.WriteLine("\nEntrez le numero de la propriete que vous voulez gerer.. (0 pour retourner au menu de jeu)");
+            bool verif2 = false;
+            do
+            {
+                string answer = Console.ReadLine();
+                if (answer == "0")
+                {
+                    return;
+                }
+                i = 1;
+                bool verif = false;
+                foreach (BuyableCase bc in this.possessions)
+                {
+                    if (i.ToString() == answer)
+                    {
+                        bc.Manage();
+                        verif = true;
+                        verif2 = true;
+                    }
+                    i++;
+                }
+                if (!verif)
+                {
+                    Console.WriteLine("Je n'ai pas compris..Veuillez reessayer");
+                }
+            } while (!verif2);
         }
     }
 }

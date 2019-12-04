@@ -9,17 +9,33 @@ namespace Monopoly
     public class Borough
     {
         public int length;
-        public List<Case> cases;
+        public List<BuyableCase> cases;
 
         public Borough(int _length)
         {
             length = _length;
-            cases = new List<Case>();
+            cases = new List<BuyableCase>();
         }
 
         public bool Monopoly()
         {
-            return false;
+            bool monopoly = true;
+            Player p = this.cases[0].Owner;
+            if(p != null)
+            {
+                foreach (BuyableCase bc in this.cases)
+                {
+                    if (!p.Equals(bc.Owner) || bc.IsMort)
+                    {
+                        monopoly = false;
+                    }
+                }
+            }
+            else
+            {
+                monopoly = false;
+            }
+            return monopoly;
             // TODO : Verify if the borough is owned by the same player on all the cases
         }
     }
