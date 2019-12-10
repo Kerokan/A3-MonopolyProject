@@ -11,9 +11,13 @@ namespace Monopoly
         static void Main(string[] args)
         {
             Board board = Board.Instance;
-            Board.Display();
-            Board.cases[7].Effect(Board.players[0]);
 
+            Board.players[0].Forward(6);
+            Board.players[0].Forward(2);
+            Board.players[0].possessions[1].IsMort = true;
+            Board.players[0].Turn();
+            Board.players[0].teleport(9);
+            Board.players[0].Turn();
             Console.ReadKey();
         }
     }

@@ -19,9 +19,41 @@ namespace Monopoly
             color = _color;
         }
 
-        public Player Monopoly()
+        public bool Monopoly()
         {
-            return null;
+            bool monopoly = true;
+            Player p = this.cases[0].Owner;
+            if(p != null)
+            {
+                foreach (BuyableCase bc in this.cases)
+                {
+                    if (!p.Equals(bc.Owner) || bc.IsMort)
+                    {
+                        monopoly = false;
+                    }
+                }
+            }
+            else
+            {
+                monopoly = false;
+            }
+            try
+            {
+                Station s = (Station)this.cases[0];
+                monopoly = false;
+            }catch(InvalidCastException ice)
+            {
+            }
+            try
+            {
+                Company s = (Company)this.cases[0];
+                monopoly = false;
+            }
+            catch (InvalidCastException ice)
+            {
+            }
+            return monopoly;
+
             // TODO : Verify if the borough is owned by the same player on all the cases
         }
     }

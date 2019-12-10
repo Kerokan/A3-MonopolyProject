@@ -19,7 +19,7 @@ namespace Monopoly
 
         override public void Effect(Player p)
         {
-            if(this.Owner == null)
+            if (this.Owner == null)
             {
                 Board.PurchaseProposal(p, this);
             }
@@ -27,26 +27,30 @@ namespace Monopoly
             {
                 if (this.Owner.Equals(p))
                 {
-
+                    return;
                 }
                 else
                 {
-                    p.Taxe(this.Loyer());
+                    //Paiement !
                 }
             }
         }
 
-        public uint Loyer()
+        override public uint Rent()
         {
-            uint total = 2500;
-            foreach(Station st in this.Borough.cases)
+            uint rent = 0;
+            foreach(Station station in this.Borough.cases)
             {
-                if (st.Owner.Equals(this.Owner))
+                if (this.Owner.Equals(station.Owner))
                 {
-                    total = total * 2;
+                    if(rent == 0)
+                    {
+                        rent = 2500;
+                    }
+                    rent = rent * 2;
                 }
             }
-            return total / 2;
+            return rent;
         }
     }
 }
