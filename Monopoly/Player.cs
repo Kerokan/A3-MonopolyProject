@@ -19,7 +19,7 @@ namespace Monopoly
         public string Name { get => name; set => name = value; }
         public uint Money { get => money; set => money = value; }
 
-        public Player(string _name)
+        public Player(string _name, Board board)
         {
            // board = Board.Instance;
             name = _name;
@@ -27,6 +27,7 @@ namespace Monopoly
             money = 150000;
             inJail = false;
             possessions = new List<BuyableCase>();
+            Player.board = board;
         }
 
         /// <summary>

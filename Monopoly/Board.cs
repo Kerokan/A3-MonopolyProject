@@ -53,7 +53,7 @@ namespace Monopoly
                 Console.WriteLine("Quel est le nom du joueur {0}", i + 1);
                 string name = Console.ReadLine();
 
-                players[i] = new Player(name);
+                players[i] = new Player(name, this);
             }
 
             dices = new Dice();
