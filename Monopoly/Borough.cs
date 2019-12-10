@@ -9,13 +9,13 @@ namespace Monopoly
     public class Borough
     {
         public int length;
-        public List<Case> cases;
+        public List<BuyableCase> cases;
         public ConsoleColor color;
 
         public Borough(int _length, ConsoleColor _color)
         {
             length = _length;
-            cases = new List<Case>();
+            cases = new List<BuyableCase>();
             color = _color;
         }
 

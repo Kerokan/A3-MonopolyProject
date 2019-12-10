@@ -69,7 +69,7 @@ namespace Monopoly
             cases[4] = new EventCase(20000, "Impots sur le revenu");
             Borough Stations = new Borough(4, ConsoleColor.DarkGray);
             cases[5] = new Station("Gare Montparnasse", Stations);
-            Stations.cases.Add(cases[5]);
+            Stations.cases.Add((BuyableCase)cases[5]);
             Borough Cyan = new Borough(3, ConsoleColor.Cyan);
             cases[6] = new Street("Rue de Vaugirard", 10000, 5000, Cyan);
             Cyan.cases.Add((BuyableCase)cases[6]);
@@ -81,7 +81,7 @@ namespace Monopoly
             cases[10] = new Jail();
             Borough Purple = new Borough(3, ConsoleColor.DarkMagenta);
             cases[11] = new Street("Boulevard de la Villette", 14000, 7000, Purple);
-            Purple.cases.Add(cases[11]);
+            Purple.cases.Add((BuyableCase)cases[11]);
             Borough Company = new Borough(2, ConsoleColor.Gray);
             cases[12] = new Company("Compagnie de distribution d'electricite", Company);
             Company.cases.Add((BuyableCase)cases[12]);
@@ -90,7 +90,7 @@ namespace Monopoly
             cases[14] = new Street("Rue de Paradis", 16000, 8000, Purple);
             Purple.cases.Add((BuyableCase)cases[14]);
             cases[15] = new Station("Gare de Lyon", Stations);
-            Stations.cases.Add(cases[15]);
+            Stations.cases.Add((BuyableCase)cases[15]);
             Borough Orange = new Borough(3, ConsoleColor.DarkYellow);
             cases[16] = new Street("Avenue Mozart", 18000, 9000, Orange);
             Orange.cases.Add((BuyableCase)cases[16]);
@@ -109,7 +109,7 @@ namespace Monopoly
             cases[24] = new Street("Avenue Henri Martin", 24000, 12000, Red);
             Red.cases.Add((BuyableCase)cases[24]);
             cases[25] = new Station("Gare du Nord", Stations);
-            Stations.cases.Add(cases[25]);
+            Stations.cases.Add((BuyableCase)cases[25]);
             Borough Yellow = new Borough(3, ConsoleColor.Yellow);
             cases[26] = new Street("Faubourg Saint Honore", 26000, 13000, Yellow);
             Yellow.cases.Add((BuyableCase)cases[26]);
