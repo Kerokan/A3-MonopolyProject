@@ -44,7 +44,7 @@ namespace Monopoly
             combo = 3;
             do
             {
-                dices = Board.dices.Roll();
+                dices = board.dices.Roll();
                 combo--;
                 Console.WriteLine("Vous avez fait {0}", dices[0] + dices[1]);
                 if(dices[0] == dices[1])
