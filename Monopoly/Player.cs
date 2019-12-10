@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Monopoly
 {
-    public class Player
+    public class Player : IEquatable<Player>
     {
         static Board board;
         private string name;
@@ -78,6 +78,11 @@ namespace Monopoly
             {
                 Board.Failure(this);
             }
+        }
+
+        public bool Equals(Player other)
+        {
+            return this.name.Equals(other.name);    
         }
     }
 }

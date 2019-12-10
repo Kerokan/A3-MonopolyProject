@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Monopoly
 {
@@ -38,6 +39,7 @@ namespace Monopoly
 
         public bool GoToStart(Player p)
         {
+            // MessageBox.Show(p.Name + " : Allez à la Case Départ", "Carce Chance", MessageBoxButtons.OK);
             Console.WriteLine("Carte chance : Allez à la Case Départ.");
             p.teleport(0);
             return true;

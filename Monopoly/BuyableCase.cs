@@ -11,7 +11,6 @@ namespace Monopoly
         private uint buyPrice;
         private Player owner;
         private uint mortgagePrice;
-        private Borough borough;
 
         public Player Owner { get => owner; set => owner = value; }
         public uint MortgagePrice { get => mortgagePrice; set => mortgagePrice = value; }
@@ -24,6 +23,7 @@ namespace Monopoly
             {
                 p.Money = p.Money - this.buyPrice;
                 this.Owner = p;
+                p.possessions.Add(this);
                 return true;
             }
             else

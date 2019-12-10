@@ -9,8 +9,8 @@ namespace Monopoly
     public sealed class Board
     {
         private static readonly Lazy<Board> lazy = new Lazy<Board> (() => new Board());
-        private static Case[] cases = new Case[40];
-        private static Player[] players;
+        public static Case[] cases = new Case[40];
+        public static Player[] players;
         public Dice dices;
 
         public static Board Instance 
@@ -23,6 +23,7 @@ namespace Monopoly
 
         private Board()
         {
+            Console.SetWindowSize(Console.LargestWindowWidth - 20, Console.LargestWindowHeight - 10);
             // Creation of the players
             Console.WriteLine("Combien de joueurs vont participer ? (Entre 2 et 9)");
             bool verif = false;
@@ -58,17 +59,17 @@ namespace Monopoly
             dices = new Dice();
             // Creation of the board / cases / Borough
             cases[0] = new Start();
-            Borough DBlue = new Borough(2);
+            Borough DBlue = new Borough(2, ConsoleColor.DarkBlue);
             cases[1] = new Street("Boulevard de Belleville", 6000, 3000, DBlue);
             DBlue.cases.Add(cases[1]);
             cases[2] = new CommunityFund();
             cases[3] = new Street("Rue Lecourbe", 6000, 3000, DBlue);
             DBlue.cases.Add(cases[3]);
             cases[4] = new EventCase(20000, "Impots sur le revenu");
-            Borough Stations = new Borough(4);
+            Borough Stations = new Borough(4, ConsoleColor.DarkGray);
             cases[5] = new Station("Gare Montparnasse", Stations);
             Stations.cases.Add(cases[5]);
-            Borough Cyan = new Borough(3);
+            Borough Cyan = new Borough(3, ConsoleColor.Cyan);
             cases[6] = new Street("Rue de Vaugirard", 10000, 5000, Cyan);
             Cyan.cases.Add(cases[6]);
             cases[7] = new ChanceCard();
@@ -77,10 +78,10 @@ namespace Monopoly
             cases[9] = new Street("Avenue de la République", 12000, 6000, Cyan);
             Cyan.cases.Add(cases[8]);
             cases[10] = new Jail();
-            Borough Purple = new Borough(3);
+            Borough Purple = new Borough(3, ConsoleColor.DarkMagenta);
             cases[11] = new Street("Boulevard de la Villette", 14000, 7000, Purple);
             Purple.cases.Add(cases[11]);
-            Borough Company = new Borough(2);
+            Borough Company = new Borough(2, ConsoleColor.Gray);
             cases[12] = new Company("Compagnie de distribution d'electricite", Company);
             Company.cases.Add(cases[12]);
             cases[13] = new Street("Avenue de Neuilly", 14000, 7000, Purple);
@@ -89,7 +90,7 @@ namespace Monopoly
             Purple.cases.Add(cases[14]);
             cases[15] = new Station("Gare de Lyon", Stations);
             Stations.cases.Add(cases[15]);
-            Borough Orange = new Borough(3);
+            Borough Orange = new Borough(3, ConsoleColor.DarkYellow);
             cases[16] = new Street("Avenue Mozart", 18000, 9000, Orange);
             Orange.cases.Add(cases[16]);
             cases[17] = new CommunityFund();
@@ -98,7 +99,7 @@ namespace Monopoly
             cases[19] = new Street("Place Pigalle", 20000, 10000, Orange);
             Orange.cases.Add(cases[19]);
             cases[20] = new FreeParking();
-            Borough Red = new Borough(3);
+            Borough Red = new Borough(3, ConsoleColor.Red);
             cases[21] = new Street("Avenue Matignon", 22000, 11000, Red);
             Red.cases.Add(cases[21]);
             cases[22] = new ChanceCard();
@@ -108,7 +109,7 @@ namespace Monopoly
             Red.cases.Add(cases[24]);
             cases[25] = new Station("Gare du Nord", Stations);
             Stations.cases.Add(cases[25]);
-            Borough Yellow = new Borough(3);
+            Borough Yellow = new Borough(3, ConsoleColor.Yellow);
             cases[26] = new Street("Faubourg Saint Honore", 26000, 13000, Yellow);
             Yellow.cases.Add(cases[26]);
             cases[27] = new Street("Place de la Bourse", 26000, 13000, Yellow);
@@ -118,7 +119,7 @@ namespace Monopoly
             cases[29] = new Street("Rue Lafayette", 28000, 14000, Yellow);
             Yellow.cases.Add(cases[29]);
             cases[30] = new GoToJail();
-            Borough Green = new Borough(3);
+            Borough Green = new Borough(3, ConsoleColor.Green);
             cases[31] = new Street("Avenue de Breteuil", 30000, 15000, Green);
             Green.cases.Add(cases[31]);
             cases[32] = new Street("Avenue Foch", 30000, 15000, Green);
@@ -129,7 +130,7 @@ namespace Monopoly
             cases[35] = new Station("Gare St Lazare", Stations);
             Stations.cases.Add(cases[35]);
             cases[36] = new ChanceCard();
-            Borough Blue = new Borough(2);
+            Borough Blue = new Borough(2, ConsoleColor.Blue);
             cases[37] = new Street("Boulevard des Champs-Elysees", 35000, 17500, Blue);
             Blue.cases.Add(cases[37]);
             cases[38] = new EventCase(10000, "Taxe de Luxe");
@@ -326,6 +327,39 @@ namespace Monopoly
             }
 
             players = players2;
+        }
+
+        public static void Display()
+        {
+            /*
+            Console.WriteLine(" _ _ _ _ _ _ _ _ _ _ _ ");
+            Console.WriteLine("|_|_|_|_|_|_|_|_|_|_|_|");
+            Console.WriteLine("|_|                 |_|");
+            Console.WriteLine("|_|                 |_|");
+            Console.WriteLine("|_|                 |_|");
+            Console.WriteLine("|_|                 |_|");
+            Console.WriteLine("|_|                 |_|");
+            Console.WriteLine("|_|                 |_|");
+            Console.WriteLine("|_|                 |_|");
+            Console.WriteLine("|_|                 |_|");
+            Console.WriteLine("|_|_ _ _ _ _ _ _ _ _|_|");
+            Console.WriteLine("|_|_|_|_|_|_|_|_|_|_|_|");
+            */
+            Console.Clear();
+            Console.WriteLine(" _ ");
+            foreach(Case c in Board.cases)
+            {
+                try
+                {
+                    Console.BackgroundColor = c.borough.color;
+                    Console.WriteLine("|{0}|", c.Name[0].ToString().ToUpper());
+                    Console.ResetColor();
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine("|n|");
+                }
+            }
         }
     }
 }

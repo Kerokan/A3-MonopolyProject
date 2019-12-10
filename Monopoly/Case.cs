@@ -9,6 +9,7 @@ namespace Monopoly
     public abstract class Case
     {
         private string name;
+        public Borough borough;
 
         public string Name { get => name; set => name = value; }
 
@@ -16,5 +17,6 @@ namespace Monopoly
         {
             return;
         }
+
     }
 }

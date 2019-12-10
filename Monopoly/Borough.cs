@@ -10,11 +10,13 @@ namespace Monopoly
     {
         public int length;
         public List<Case> cases;
+        public ConsoleColor color;
 
-        public Borough(int _length)
+        public Borough(int _length, ConsoleColor _color)
         {
             length = _length;
             cases = new List<Case>();
+            color = _color;
         }
 
         public Player Monopoly()

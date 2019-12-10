@@ -23,6 +23,30 @@ namespace Monopoly
             {
                 Board.PurchaseProposal(p, this);
             }
+            else
+            {
+                if (this.Owner.Equals(p))
+                {
+
+                }
+                else
+                {
+                    p.Taxe(this.Loyer());
+                }
+            }
+        }
+
+        public uint Loyer()
+        {
+            uint total = 2500;
+            foreach(Station st in this.Borough.cases)
+            {
+                if (st.Owner.Equals(this.Owner))
+                {
+                    total = total * 2;
+                }
+            }
+            return total / 2;
         }
     }
 }
