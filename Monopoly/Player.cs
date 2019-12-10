@@ -34,6 +34,7 @@ namespace Monopoly
         /// If it's a double, play again
         /// Player will go to jail after 3 consecutive double
         /// </summary>
+        /// TO REDO
         public void Play() 
         {
             ushort[] dices;
@@ -93,9 +94,9 @@ namespace Monopoly
             {
                 this.Summary();
                 Console.WriteLine("Que voulez-vous faire ?");
-                Console.WriteLine("1. Lancer les dés.");
-                Console.WriteLine("2. Consulter vos propriétés");
-                Console.WriteLine("3. Proposer un échange à un autre joueur");
+                Console.WriteLine("1. Lancer les des");
+                Console.WriteLine("2. Consulter vos proprietes");
+                Console.WriteLine("3. Proposer un echange a un autre joueur");
                 Console.WriteLine("\nEntrez votre choix : ");
                 string answer = Console.ReadLine();
                 switch (answer)
@@ -111,6 +112,42 @@ namespace Monopoly
 
                     case "3":
                        // this.Exchange();
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            Console.Clear();
+            while (!verif2)
+            {
+                this.Summary();
+                Console.WriteLine("Que voulez-vous faire ?");
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.WriteLine("1. Lancer les des");
+                Console.ResetColor();
+                Console.WriteLine("2. Consulter vos proprietes");
+                Console.WriteLine("3. Proposer un echange a un autre joueur");
+                Console.WriteLine("0. Passer au joueur suivant");
+                Console.WriteLine("\nEntrez votre choix : ");
+                string answer = Console.ReadLine();
+                switch (answer)
+                {
+                    case "1":
+                        Console.WriteLine("Vous avez deja joue votre tour.");
+                        Console.ReadKey();
+                        break;
+
+                    case "2":
+                        this.Consult();
+                        break;
+
+                    case "3":
+                        // this.Exchange();
+                        break;
+
+                    case "0":
+                        verif2 = true;
                         break;
 
                     default:

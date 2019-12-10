@@ -56,7 +56,7 @@ namespace Monopoly
             Console.ResetColor();
         }
 
-        public uint Rent()
+        virtual public uint Rent()
         {
             uint rent = 0;
             if (this.Borough.Monopoly())
@@ -168,6 +168,7 @@ namespace Monopoly
                             this.IsMort = true;
                             this.Owner.Money = this.Owner.Money + this.MortgagePrice;
                             verif = true;
+                            this.Manage();
                             break;
 
                         case "2":
@@ -180,12 +181,14 @@ namespace Monopoly
                                         this.Owner.Money = this.Owner.Money - this.HousePrice;
                                         this.Houses++;
                                         verif = true;
+                                        this.Manage();
                                         break;
                                     }
                                     else
                                     {
                                         Console.WriteLine("Vous n'avez pas suffisamment d'argent.");
                                         verif = true;
+                                        this.Manage();
                                         break;
                                     }
                                 }
@@ -199,12 +202,14 @@ namespace Monopoly
                                             this.Houses = 0;
                                             this.Hotel++;
                                             verif = true;
+                                            this.Manage();
                                             break;
                                         }
                                         else
                                         {
                                             Console.WriteLine("Vous n'avez pas suffisamment d'argent.");
                                             verif = true;
+                                            this.Manage();
                                             break;
                                         }
                                     }
@@ -230,7 +235,5 @@ namespace Monopoly
                 }
             }
         }
-
-        // abstract public void accept(Player p); // Visitor Pattern
     }
 }

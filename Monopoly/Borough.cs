@@ -35,7 +35,23 @@ namespace Monopoly
             {
                 monopoly = false;
             }
+            try
+            {
+                Station s = (Station)this.cases[0];
+                monopoly = false;
+            }catch(InvalidCastException ice)
+            {
+            }
+            try
+            {
+                Company s = (Company)this.cases[0];
+                monopoly = false;
+            }
+            catch (InvalidCastException ice)
+            {
+            }
             return monopoly;
+
             // TODO : Verify if the borough is owned by the same player on all the cases
         }
     }

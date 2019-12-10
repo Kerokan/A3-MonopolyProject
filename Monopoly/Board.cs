@@ -24,6 +24,7 @@ namespace Monopoly
         private Board()
         {
             // Creation of the players
+            Console.Title = "Monopoly";
             Console.WriteLine("Combien de joueurs vont participer ? (Entre 2 et 9)");
             bool verif = false;
             int nbPlayers = 0;
