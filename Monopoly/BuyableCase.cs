@@ -8,14 +8,14 @@ namespace Monopoly
 {
     public abstract class BuyableCase : Case, IComparable<BuyableCase>
     {
-        private uint buyPrice;
-        private Player owner;
-        private uint mortgagePrice;
+        protected uint buyPrice;
+        protected Player owner;
+        protected uint mortgagePrice;
         private Borough borough;
         private bool isMort;
 
-        private int houses = 0;
-        private int hotel = 0;
+        public int houses = 0;
+        public int hotel = 0;
         private uint housePrice;
 
         public Player Owner { get => owner; set => owner = value; }

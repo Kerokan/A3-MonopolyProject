@@ -8,6 +8,11 @@ namespace Monopoly
 {
     class FreeParking : Case
     {
+        public FreeParking()
+        {
+        name = "Parking gratuit";
+        }
+
         override public void Effect(Player p)
         {
             Console.WriteLine("Rien ne se passe..");

@@ -63,6 +63,7 @@ namespace Monopoly
             Borough DBlue = new Borough(2, ConsoleColor.DarkBlue);
             cases[1] = new Street("Boulevard de Belleville", 6000, 3000, DBlue);
             DBlue.cases.Add((BuyableCase)cases[1]);
+            cases[1].borough = DBlue;
             cases[2] = new CommunityFund();
             cases[3] = new Street("Rue Lecourbe", 6000, 3000, DBlue);
             DBlue.cases.Add((BuyableCase)cases[3]);
@@ -359,20 +360,31 @@ namespace Monopoly
             Console.WriteLine("|_|_|_|_|_|_|_|_|_|_|_|");
             */
             Console.Clear();
-            Console.WriteLine(" _ ");
+            int i = 0;
+            BuyableCase cc;
             foreach(Case c in Board.cases)
             {
+                if((i++)%5 == 0)
+                    Console.WriteLine("");
+                Console.Write("|");
                 try
                 {
-                    Console.BackgroundColor = c.borough.color;
-                    Console.WriteLine("|{0}|", c.Name[0].ToString().ToUpper());
+                    cc = c as BuyableCase;
+                    Console.BackgroundColor = cc.borough.color;
+                    Console.Write("{0}", cc.Name);
                     Console.ResetColor();
+                    for(int j = 0; j < cc.houses; j++)
+                        Console.Write("+");
+                    for(int j = 0; j < cc.hotel; j++)
+                        Console.Write("#");
                 }
                 catch(Exception e)
                 {
-                    Console.WriteLine("|n|");
+                    Console.Write("{0}", c.Name);
                 }
+                Console.Write("| ");
             }
+            Console.WriteLine("\n");
         }
     }
 }

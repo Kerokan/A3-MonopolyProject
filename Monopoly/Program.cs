@@ -12,12 +12,11 @@ namespace Monopoly
         {
             Board board = Board.Instance;
 
-            Board.players[0].Forward(6);
-            Board.players[0].Forward(2);
-            Board.players[0].possessions[1].IsMort = true;
-            Board.players[0].Turn();
-            Board.players[0].teleport(9);
-            Board.players[0].Turn();
+            while(true)
+            {
+                foreach(Player p in Board.players)
+                    p.Turn();
+            }
             Console.ReadKey();
         }
     }

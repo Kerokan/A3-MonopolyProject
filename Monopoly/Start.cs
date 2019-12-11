@@ -8,5 +8,9 @@ namespace Monopoly
 {
     class Start : Case
     {
+        public Start()
+        {
+            name = "Départ";
+        }
     }
 }

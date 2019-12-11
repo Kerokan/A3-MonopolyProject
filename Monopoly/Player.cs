@@ -85,11 +85,19 @@ namespace Monopoly
             Board.PositionUpdate(this);
         }
 
+        public void PositionDisp()
+        {
+            foreach(Player p in Board.players)
+                Console.WriteLine("Le joueur " + p.name + " est actuellement à la case " + Board.cases[p.position].name + " (" + ((p.position/5)+1) + "eme ligne)");
+        }
+
         public void Turn()
         {
             bool verif1 = false;
             bool verif2 = false;
             Console.Clear();
+            Board.Display();
+            PositionDisp();
             Console.WriteLine("C'est au tour de {0}", this.Name);
             while (!verif1)
             {

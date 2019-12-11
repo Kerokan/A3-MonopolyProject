@@ -8,5 +8,9 @@ namespace Monopoly
 {
     class Jail : Case
     {
+        public Jail()
+        {
+            name = "Visite prison";
+        }
     }
 }
