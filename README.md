@@ -8,7 +8,7 @@ This Monopoly use most of the old french rules of the game. However the currency
 ## Design Patterns
 ### Singleton
 
-We decided to use a **Singleton** for the board, because it contains all the informations, about the players, the cases, so it can't be duplicated. In order to assure it, the Singleton is the best pattern. Moreover, we only want the solution to run one game at the same time.
+We decided to use a **Singleton** for the board, because it contains all the informations, about the players, the cases, so it can't be duplicated. In order to assure it, the Singleton is the best pattern. Moreover, we only want the solution to run one game at the same time like Tyler said "One fight at a time, fellas"
 
 ### Observer
 
