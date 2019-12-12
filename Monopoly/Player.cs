@@ -105,7 +105,6 @@ namespace Monopoly
                 Console.WriteLine("Que voulez-vous faire ?");
                 Console.WriteLine("1. Lancer les des");
                 Console.WriteLine("2. Consulter vos proprietes");
-                Console.WriteLine("3. Proposer un echange a un autre joueur");
                 Console.WriteLine("\nEntrez votre choix : ");
                 string answer = Console.ReadLine();
                 switch (answer)
@@ -117,10 +116,6 @@ namespace Monopoly
 
                     case "2":
                         this.Consult();
-                        break;
-
-                    case "3":
-                       // this.Exchange();
                         break;
 
                     default:
@@ -138,7 +133,6 @@ namespace Monopoly
                 Console.WriteLine("1. Lancer les des");
                 Console.ResetColor();
                 Console.WriteLine("2. Consulter vos proprietes");
-                Console.WriteLine("3. Proposer un echange a un autre joueur");
                 Console.WriteLine("0. Passer au joueur suivant");
                 Console.WriteLine("\nEntrez votre choix : ");
                 string answer = Console.ReadLine();
@@ -151,10 +145,6 @@ namespace Monopoly
 
                     case "2":
                         this.Consult();
-                        break;
-
-                    case "3":
-                        // this.Exchange();
                         break;
 
                     case "0":
