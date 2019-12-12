@@ -321,7 +321,7 @@ namespace Monopoly
                     }
                 }
                 Console.WriteLine("L'enchere a ete remportee par {0}, qui devient le proprietaire de {1} pour le prix de {2} euros", winner.Name, bc.Name, actualPrice);
-                winner.Money = winner.Money - actualPrice;
+                winner.Taxe(actualPrice);
                 bc.Owner = winner;
                 winner.possessions.Add(bc);
             }

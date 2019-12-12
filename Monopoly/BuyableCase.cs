@@ -31,7 +31,7 @@ namespace Monopoly
         {
             if(p.Money > buyPrice)
             {
-                p.Money = p.Money - this.buyPrice;
+                p.Taxe(this.buyPrice);
                 this.Owner = p;
                 p.possessions.Add(this);
                 return true;
@@ -116,7 +116,7 @@ namespace Monopoly
                         case "1":
                             if(Owner.Money > this.MortgagePrice + this.MortgagePrice / 10)
                             {
-                                Owner.Money = Owner.Money - (this.MortgagePrice + this.MortgagePrice / 10);
+                                Owner.Taxe(this.MortgagePrice + this.MortgagePrice / 10);
                                 this.IsMort = false;
                                 Console.WriteLine("L'hypotheque a ete levee");
                                 verif = true;
@@ -178,7 +178,7 @@ namespace Monopoly
                                 {
                                     if(this.Owner.Money >= this.HousePrice)
                                     {
-                                        this.Owner.Money = this.Owner.Money - this.HousePrice;
+                                        this.Owner.Taxe(this.HousePrice);
                                         this.Houses++;
                                         verif = true;
                                         this.Manage();
@@ -198,7 +198,7 @@ namespace Monopoly
                                     {
                                         if (this.Owner.Money >= this.HousePrice)
                                         {
-                                            this.Owner.Money = this.Owner.Money - this.HousePrice;
+                                            this.Owner.Taxe(this.HousePrice);
                                             this.Houses = 0;
                                             this.Hotel++;
                                             verif = true;

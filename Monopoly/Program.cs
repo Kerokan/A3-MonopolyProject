@@ -12,7 +12,7 @@ namespace Monopoly
         {
             Board board = Board.Instance;
 
-            while(true)
+            while(Board.players.Length > 1)
             {
                 foreach(Player p in Board.players)
                     p.Turn();

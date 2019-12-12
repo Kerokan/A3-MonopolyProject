@@ -128,6 +128,8 @@ namespace Monopoly
                 }
             }
             Console.Clear();
+            Board.Display();
+            PositionDisp();
             while (!verif2)
             {
                 this.Summary();
