@@ -11,12 +11,14 @@ namespace Monopoly
         public int length;
         public List<BuyableCase> cases;
         public ConsoleColor color;
+        public uint housePrice;
 
-        public Borough(int _length, ConsoleColor _color)
+        public Borough(int _length, ConsoleColor _color, uint _housePrice)
         {
             length = _length;
             cases = new List<BuyableCase>();
             color = _color;
+            housePrice = _housePrice;
         }
 
         public bool Monopoly()
@@ -53,8 +55,6 @@ namespace Monopoly
             {
             }
             return monopoly;
-
-            // TODO : Verify if the borough is owned by the same player on all the cases
         }
     }
 }

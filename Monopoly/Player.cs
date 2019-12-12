@@ -12,12 +12,12 @@ namespace Monopoly
         static Board board;
         private string name;
         public ushort position;
-        private uint money;
+        private int money;
         public bool inJail;
         public List<BuyableCase> possessions;
 
         public string Name { get => name; set => name = value; }
-        public uint Money { get => money; set => money = value; }
+        public int Money { get => money; set => money = value; }
 
         public Player(string _name, Board board)
         {
@@ -229,16 +229,10 @@ namespace Monopoly
             } while (!verif2);
         }
 
-        public void Taxe(uint amount)
+        public void Taxe(int amount)
         {
-            if(this.money >= amount)
-            {
-                this.money = this.money - amount;
-            }
-            else
-            {
-                Board.Failure(this);
-            }
+            this.money = this.money - amount;
+            Board.Failure(this);
         }
 
         public bool Equals(Player other)

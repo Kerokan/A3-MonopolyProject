@@ -60,7 +60,7 @@ namespace Monopoly
             dices = new Dice();
             // Creation of the board / cases / Borough
             cases[0] = new Start();
-            Borough DBlue = new Borough(2, ConsoleColor.DarkBlue);
+            Borough DBlue = new Borough(2, ConsoleColor.DarkBlue, 5000);
             cases[1] = new Street("Boulevard de Belleville", 6000, 3000, DBlue);
             DBlue.cases.Add((BuyableCase)cases[1]);
             cases[1].borough = DBlue;
@@ -68,10 +68,10 @@ namespace Monopoly
             cases[3] = new Street("Rue Lecourbe", 6000, 3000, DBlue);
             DBlue.cases.Add((BuyableCase)cases[3]);
             cases[4] = new EventCase(20000, "Impots sur le revenu");
-            Borough Stations = new Borough(4, ConsoleColor.DarkGray);
+            Borough Stations = new Borough(4, ConsoleColor.DarkGray, 0);
             cases[5] = new Station("Gare Montparnasse", Stations);
             Stations.cases.Add((BuyableCase)cases[5]);
-            Borough Cyan = new Borough(3, ConsoleColor.Cyan);
+            Borough Cyan = new Borough(3, ConsoleColor.Cyan, 5000);
             cases[6] = new Street("Rue de Vaugirard", 10000, 5000, Cyan);
             Cyan.cases.Add((BuyableCase)cases[6]);
             cases[7] = new ChanceCard();
@@ -80,10 +80,10 @@ namespace Monopoly
             cases[9] = new Street("Avenue de la République", 12000, 6000, Cyan);
             Cyan.cases.Add((BuyableCase)cases[9]);
             cases[10] = new Jail();
-            Borough Purple = new Borough(3, ConsoleColor.DarkMagenta);
+            Borough Purple = new Borough(3, ConsoleColor.DarkMagenta, 10000);
             cases[11] = new Street("Boulevard de la Villette", 14000, 7000, Purple);
             Purple.cases.Add((BuyableCase)cases[11]);
-            Borough Company = new Borough(2, ConsoleColor.Gray);
+            Borough Company = new Borough(2, ConsoleColor.Gray, 0);
             cases[12] = new Company("Compagnie de distribution d'electricite", Company);
             Company.cases.Add((BuyableCase)cases[12]);
             cases[13] = new Street("Avenue de Neuilly", 14000, 7000, Purple);
@@ -92,7 +92,7 @@ namespace Monopoly
             Purple.cases.Add((BuyableCase)cases[14]);
             cases[15] = new Station("Gare de Lyon", Stations);
             Stations.cases.Add((BuyableCase)cases[15]);
-            Borough Orange = new Borough(3, ConsoleColor.DarkYellow);
+            Borough Orange = new Borough(3, ConsoleColor.DarkYellow, 10000);
             cases[16] = new Street("Avenue Mozart", 18000, 9000, Orange);
             Orange.cases.Add((BuyableCase)cases[16]);
             cases[17] = new CommunityFund();
@@ -101,7 +101,7 @@ namespace Monopoly
             cases[19] = new Street("Place Pigalle", 20000, 10000, Orange);
             Orange.cases.Add((BuyableCase)cases[19]);
             cases[20] = new FreeParking();
-            Borough Red = new Borough(3, ConsoleColor.Red);
+            Borough Red = new Borough(3, ConsoleColor.Red, 15000);
             cases[21] = new Street("Avenue Matignon", 22000, 11000, Red);
             Red.cases.Add((BuyableCase)cases[21]);
             cases[22] = new ChanceCard();
@@ -111,7 +111,7 @@ namespace Monopoly
             Red.cases.Add((BuyableCase)cases[24]);
             cases[25] = new Station("Gare du Nord", Stations);
             Stations.cases.Add((BuyableCase)cases[25]);
-            Borough Yellow = new Borough(3, ConsoleColor.Yellow);
+            Borough Yellow = new Borough(3, ConsoleColor.Yellow, 15000);
             cases[26] = new Street("Faubourg Saint Honore", 26000, 13000, Yellow);
             Yellow.cases.Add((BuyableCase)cases[26]);
             cases[27] = new Street("Place de la Bourse", 26000, 13000, Yellow);
@@ -121,7 +121,7 @@ namespace Monopoly
             cases[29] = new Street("Rue Lafayette", 28000, 14000, Yellow);
             Yellow.cases.Add((BuyableCase)cases[29]);
             cases[30] = new GoToJail();
-            Borough Green = new Borough(3, ConsoleColor.Green);
+            Borough Green = new Borough(3, ConsoleColor.Green, 20000);
             cases[31] = new Street("Avenue de Breteuil", 30000, 15000, Green);
             Green.cases.Add((BuyableCase)cases[31]);
             cases[32] = new Street("Avenue Foch", 30000, 15000, Green);
@@ -132,7 +132,7 @@ namespace Monopoly
             cases[35] = new Station("Gare St Lazare", Stations);
             Stations.cases.Add((BuyableCase)cases[35]);
             cases[36] = new ChanceCard();
-            Borough Blue = new Borough(2, ConsoleColor.Blue);
+            Borough Blue = new Borough(2, ConsoleColor.Blue, 20000);
             cases[37] = new Street("Boulevard des Champs-Elysees", 35000, 17500, Blue);
             Blue.cases.Add((BuyableCase)cases[37]);
             cases[38] = new EventCase(10000, "Taxe de Luxe");
@@ -321,26 +321,34 @@ namespace Monopoly
                     }
                 }
                 Console.WriteLine("L'enchere a ete remportee par {0}, qui devient le proprietaire de {1} pour le prix de {2} euros", winner.Name, bc.Name, actualPrice);
-                winner.Taxe(actualPrice);
+                winner.Taxe((int)actualPrice);
                 bc.Owner = winner;
                 winner.possessions.Add(bc);
             }
         }
         public static void Failure(Player p)
         {
-            Console.WriteLine("{0} a perdu.", p.Name);
-            Player[] players2 = new Player[players.Length - 1];
-            int j = 0;
-            for (int i = 0; i < players.Length; i++)
+            if(p.Money < 0)
             {
-                if (!players[i].Equals(p))
+                Console.WriteLine("{0} a perdu.", p.Name);
+                Player[] players2 = new Player[players.Length - 1];
+                int j = 0;
+                for (int i = 0; i < players.Length; i++)
                 {
-                    players2[j] = players[i];
-                    j++;
+                    if (!players[i].Equals(p))
+                    {
+                        players2[j] = players[i];
+                        j++;
+                    }
                 }
+                foreach(BuyableCase bc in p.possessions)
+                {
+                    bc.Owner = null;
+                    bc.hotel = 0;
+                    bc.houses = 0;
+                }
+                players = players2;
             }
-
-            players = players2;
         }
 
         public static void Display()

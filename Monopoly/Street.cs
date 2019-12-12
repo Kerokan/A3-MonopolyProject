@@ -17,6 +17,7 @@ namespace Monopoly
             this.owner = null;
             this.mortgagePrice = _mortgagePrice;
             this.borough = _borough;
+            this.HousePrice = _borough.housePrice;
         }
 
         override public void Effect(Player p)

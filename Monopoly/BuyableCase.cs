@@ -11,7 +11,7 @@ namespace Monopoly
         protected uint buyPrice;
         protected Player owner;
         protected uint mortgagePrice;
-        private Borough borough;
+        new private Borough borough;
         private bool isMort;
 
         public int houses = 0;
@@ -31,7 +31,7 @@ namespace Monopoly
         {
             if(p.Money > buyPrice)
             {
-                p.Taxe(this.buyPrice);
+                p.Taxe((int)this.buyPrice);
                 this.Owner = p;
                 p.possessions.Add(this);
                 return true;
@@ -116,7 +116,7 @@ namespace Monopoly
                         case "1":
                             if(Owner.Money > this.MortgagePrice + this.MortgagePrice / 10)
                             {
-                                Owner.Taxe(this.MortgagePrice + this.MortgagePrice / 10);
+                                Owner.Taxe((int)(this.MortgagePrice + this.MortgagePrice / 10));
                                 this.IsMort = false;
                                 Console.WriteLine("L'hypotheque a ete levee");
                                 verif = true;
@@ -166,7 +166,7 @@ namespace Monopoly
                     {
                         case "1":
                             this.IsMort = true;
-                            this.Owner.Money = this.Owner.Money + this.MortgagePrice;
+                            this.Owner.Money = (int)(this.Owner.Money + this.MortgagePrice);
                             verif = true;
                             this.Manage();
                             break;
@@ -178,7 +178,7 @@ namespace Monopoly
                                 {
                                     if(this.Owner.Money >= this.HousePrice)
                                     {
-                                        this.Owner.Taxe(this.HousePrice);
+                                        this.Owner.Taxe((int)this.HousePrice);
                                         this.Houses++;
                                         verif = true;
                                         this.Manage();
@@ -198,7 +198,7 @@ namespace Monopoly
                                     {
                                         if (this.Owner.Money >= this.HousePrice)
                                         {
-                                            this.Owner.Taxe(this.HousePrice);
+                                            this.Owner.Taxe((int)this.HousePrice);
                                             this.Houses = 0;
                                             this.Hotel++;
                                             verif = true;
