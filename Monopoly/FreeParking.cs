@@ -16,6 +16,7 @@ namespace Monopoly
         override public void Effect(Player p)
         {
             Console.WriteLine("Rien ne se passe..");
+            Console.ReadKey();
         }
     }
 }

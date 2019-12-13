@@ -12,7 +12,7 @@ namespace Monopoly
         static Random rand = new Random();
         public CommunityFund()
         {
-            Name = "Community Fund";
+            Name = "Caisse de Communaute";
             myDicti.Add(1, BankError);
             myDicti.Add(2, BackToBelleville);
             myDicti.Add(3, Contributions);

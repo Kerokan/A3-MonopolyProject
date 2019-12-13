@@ -39,6 +39,7 @@ namespace Monopoly
                     p.Taxe((int)this.Rent());
                 }
             }
+            Console.ReadKey();
         }
 
         public override uint Rent()

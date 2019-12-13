@@ -15,5 +15,12 @@ namespace Monopoly
             taxe = _taxe;
             Name = _name;
         }
+
+        public override void Effect(Player p)
+        {
+            Console.WriteLine("Vous devez payer {0} euros", this.taxe);
+            p.Taxe((int)this.taxe);
+            Console.ReadKey();
+        }
     }
 }

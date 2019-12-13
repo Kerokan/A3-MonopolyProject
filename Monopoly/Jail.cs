@@ -12,5 +12,11 @@ namespace Monopoly
         {
             name = "Visite prison";
         }
+
+        override public void Effect(Player p)
+        {
+            Console.WriteLine("Rien ne se passe..");
+            Console.ReadKey();
+        }
     }
 }
