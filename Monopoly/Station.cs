@@ -31,6 +31,7 @@ namespace Monopoly
                 }
                 else
                 {
+                    Console.WriteLine("Le montant du loyer est : {0}", this.Rent());
                     this.Owner.Money = (int)(this.Owner.Money + this.Rent());
                     p.Taxe((int)this.Rent());
                 }
