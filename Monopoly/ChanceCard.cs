@@ -35,11 +35,11 @@ namespace Monopoly
         {
             int effect = rand.Next(1, 16);
             myDicti[effect](p);
+            Console.ReadKey();
         }
 
         public bool GoToStart(Player p)
         {
-            // MessageBox.Show(p.Name + " : Allez à la Case Départ", "Carce Chance", MessageBoxButtons.OK);
             Console.WriteLine("Carte chance : Allez à la Case Départ.");
             p.teleport(0);
             return true;
@@ -48,8 +48,7 @@ namespace Monopoly
         public bool GoToJail(Player p)
         {
             Console.WriteLine("Carte chance : Allez directement en prison.");
-            p.inJail = true;
-            p.teleport(10);
+            p.teleport(30);
             return true;
         }
 
@@ -100,7 +99,6 @@ namespace Monopoly
 
         public bool SchoolFees(Player p)
         {
-            //On laisse ? -> De base : Frais de scolarité
             Console.WriteLine("Carte chance : Vous payez les frais de l'ESILV pour vos enfants : 15000 euros.");
             p.Taxe(15000);
             return true;
@@ -116,7 +114,10 @@ namespace Monopoly
         public bool Reparations(Player p)
         {
             // - 2 500 Euros for every Houses // - 10 000 for every Hotels
-            Console.WriteLine("Reparations");
+            int[] buildings = p.GetHousesAndHotels();
+            int fee = buildings[0]*2500+buildings[1]*10000;
+            Console.WriteLine("Reparations dans vos bâtiments, vous payez " + fee + " euros");
+            p.Taxe(fee);
             return true;
         }
 
@@ -138,7 +139,10 @@ namespace Monopoly
         public bool RoadSystem(Player p)
         {
             // +- 4 000 for every Houses // +- 11 500 for every Hotels
-            Console.WriteLine("RoadSystem");
+            int[] buildings = p.GetHousesAndHotels();
+            int fee = buildings[0]*4000+buildings[1]*11500;
+            Console.WriteLine("Aménagements de systèmes routiers près de vos bâtiments, vous payez " + fee + " euros");
+            p.Taxe(fee);
             return true;
         }
 

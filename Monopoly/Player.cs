@@ -13,7 +13,7 @@ namespace Monopoly
         private string name;
         public ushort position;
         private int money;
-        public bool inJail;
+        private ushort inJailCount;
         public List<BuyableCase> possessions;
 
         public string Name { get => name; set => name = value; }
@@ -25,7 +25,6 @@ namespace Monopoly
             name = _name;
             position = 0;
             money = 150000;
-            inJail = false;
             possessions = new List<BuyableCase>();
             Player.board = board;
         }
@@ -50,16 +49,29 @@ namespace Monopoly
                 if(dices[0] == dices[1])
                 {
                     Console.WriteLine("C'est un double !");
+                    if(inJailCount > 0)
+                    {
+                        Console.WriteLine("Vous sortez de prison !");
+                        inJailCount = 0;
+                    }
                     if(combo >= 0)
                     {
-                        Console.WriteLine("Vous allez rejouer.");
+                        this.Forward((ushort)(dices[0]+dices[1]));
+                        Console.WriteLine("\nVous allez rejouer.");
                     }
                     else
                     {
                         Console.WriteLine("Vous allez directement en prison.");
                     }
                 }
-                this.Forward((ushort)(dices[0] + dices[1]));
+                else if(inJailCount == 0)
+                    this.Forward((ushort)(dices[0] + dices[1]));
+                else
+                {
+                    inJailCount--;
+                    Console.WriteLine("Dommage...");
+                }
+
             }
             while (dices[0] == dices[1] && combo >= 1);
             if (combo == 0)
@@ -68,9 +80,26 @@ namespace Monopoly
             }
         }
 
+        public int[] GetHousesAndHotels()
+        {
+            int[] ret = new int[2];
+            foreach(BuyableCase poss in possessions)
+            {
+                ret[0] += poss.houses;
+                ret[1] += poss.hotel;
+            }
+            return ret;
+        }
+
         public void Backward(ushort value) 
         {
             this.teleport((ushort)((position - value)%40));
+        }
+
+        public void SendToJail()
+        {
+            position = 10;
+            inJailCount = 3;
         }
 
         public void Forward(ushort value) 
@@ -79,6 +108,7 @@ namespace Monopoly
                 money += 20000;
             this.teleport((ushort)((position + value)%40));
         }
+
         public void teleport(ushort position)
         {
             this.position = (ushort)(position % 40);
@@ -91,6 +121,44 @@ namespace Monopoly
                 Console.WriteLine("Le joueur " + p.name + " est actuellement à la case " + Board.cases[p.position].name + " (" + ((p.position/5)+1) + "eme ligne)");
         }
 
+        public void JailDisp()
+        {
+            bool verif;
+            string answer;
+
+            verif = false;
+            this.Summary();
+            Console.WriteLine("Vous êtes en prison");
+            Console.WriteLine("Que voulez-vous faire ?");
+            Console.WriteLine("1. Payer 5 000 euros pour sortir de prison");
+            Console.WriteLine("2. Tenter de faire un double pour vous échapper");
+            while(!verif)
+            {
+                Console.WriteLine("\nEntrez votre choix : ");
+                answer = Console.ReadLine();
+                switch (answer)
+                {
+                    case "1":
+                        Console.WriteLine("Vous payer 5 000 euros et sortez de prison");
+                        Console.WriteLine("Appuyez sur une touche pour continuer");
+                        Console.ReadKey();
+                        this.Taxe(5000);
+                        inJailCount = 0;
+                        this.Turn();
+                        verif = true;
+                        break;
+
+                    case "2":
+                        this.Play();
+                        verif = true;
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        }
+
         public void Turn()
         {
             bool verif1 = false;
@@ -99,6 +167,10 @@ namespace Monopoly
             Board.Display();
             PositionDisp();
             Console.WriteLine("C'est au tour de {0}", this.Name);
+            if(inJailCount > 0)
+                JailDisp();
+            else
+            {
             while (!verif1)
             {
                 this.Summary();
@@ -122,6 +194,7 @@ namespace Monopoly
                         break;
                 }
             }
+            
             Console.Clear();
             Board.Display();
             PositionDisp();
@@ -154,6 +227,7 @@ namespace Monopoly
                     default:
                         break;
                 }
+            }
             }
             Console.WriteLine("Votre tour est termine. Veuillez appuyer sur une touche pour passer au joueur suivant.");
             Console.ReadKey();

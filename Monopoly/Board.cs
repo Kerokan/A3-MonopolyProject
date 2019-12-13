@@ -353,20 +353,6 @@ namespace Monopoly
 
         public static void Display()
         {
-            /*
-            Console.WriteLine(" _ _ _ _ _ _ _ _ _ _ _ ");
-            Console.WriteLine("|_|_|_|_|_|_|_|_|_|_|_|");
-            Console.WriteLine("|_|                 |_|");
-            Console.WriteLine("|_|                 |_|");
-            Console.WriteLine("|_|                 |_|");
-            Console.WriteLine("|_|                 |_|");
-            Console.WriteLine("|_|                 |_|");
-            Console.WriteLine("|_|                 |_|");
-            Console.WriteLine("|_|                 |_|");
-            Console.WriteLine("|_|                 |_|");
-            Console.WriteLine("|_|_ _ _ _ _ _ _ _ _|_|");
-            Console.WriteLine("|_|_|_|_|_|_|_|_|_|_|_|");
-            */
             Console.Clear();
             int i = 0;
             BuyableCase cc;

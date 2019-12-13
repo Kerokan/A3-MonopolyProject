@@ -14,6 +14,7 @@ namespace Monopoly
         {
             rand = new Random();
         }
+
         public ushort[] Roll()
         {
             ushort[] ret = new ushort[] { (ushort)rand.Next(1,7), (ushort)rand.Next(1, 7) };

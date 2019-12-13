@@ -10,10 +10,8 @@ namespace Monopoly
     {
         static void Main(string[] args)
         {
-
             // TODO : Caisse de communautés pas enregistrés (wtf)
             // Loyer !!
-            // Prison !!
             Board board = Board.Instance;
 
             while(Board.players.Length > 1)
