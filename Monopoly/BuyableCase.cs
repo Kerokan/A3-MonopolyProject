@@ -46,6 +46,11 @@ namespace Monopoly
             return this.BuyPrice.CompareTo(other.BuyPrice);
         }
 
+        virtual public uint Rent()
+        {
+            return 0;
+        }
+
         public void Display()
         {
             if (this.IsMort)
@@ -54,36 +59,6 @@ namespace Monopoly
             }
             Console.WriteLine(this.Name);
             Console.ResetColor();
-        }
-
-        virtual public uint Rent()
-        {
-            uint rent = 0;
-            if (this.Borough.Monopoly())
-            {
-                bool verifMort = false;
-                foreach(BuyableCase bc in this.Borough.cases)
-                {
-                    if (bc.IsMort)
-                    {
-                        verifMort = true;
-                    }
-                }
-                if (!verifMort)
-                {
-                    rent = rent * 2;
-                }
-                if(this.hotel == 1)
-                {
-
-                }
-                else
-                {
-                    
-                }
-
-            }
-            return rent;
         }
 
         public void Manage()

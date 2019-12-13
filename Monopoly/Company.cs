@@ -36,8 +36,9 @@ namespace Monopoly
             }
         }
 
-        public uint Rent(uint value)
+        override public uint Rent()
         {
+            int value = 7;
             int multiplier = 0;
             foreach(Company company in this.Borough.cases)
             {

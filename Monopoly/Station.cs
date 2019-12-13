@@ -31,7 +31,8 @@ namespace Monopoly
                 }
                 else
                 {
-                    //Paiement !
+                    this.Owner.Money = (int)(this.Owner.Money + this.Rent());
+                    p.Taxe((int)this.Rent());
                 }
             }
         }

@@ -13,7 +13,7 @@ namespace Monopoly
         private string name;
         public ushort position;
         private int money;
-        private ushort inJailCount;
+        private ushort inJailCount = 0;
         public List<BuyableCase> possessions;
 
         public string Name { get => name; set => name = value; }
