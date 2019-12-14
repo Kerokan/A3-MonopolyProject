@@ -301,7 +301,14 @@ namespace Monopoly
 
         public bool Equals(Player other)
         {
-            return this.name.Equals(other.name);    
+            if(other != null)
+            {
+                return this.name.Equals(other.name);
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

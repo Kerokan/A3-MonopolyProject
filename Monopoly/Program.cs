@@ -14,9 +14,10 @@ namespace Monopoly
 
             while(Board.players.Length > 1)
             {
-                foreach(Player p in Board.players)
+                foreach (Player p in Board.players)
                     p.Turn();
             }
+            Console.WriteLine("Le vainqueur est {0} !", Board.players[0].Name);
             Console.ReadKey();
         }
     }

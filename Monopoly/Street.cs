@@ -12,11 +12,11 @@ namespace Monopoly
 
         public Street(string _name, uint _buyPrice, uint _mortgagePrice, Borough _borough)
         {
-            this.name = _name;
-            this.buyPrice = _buyPrice;
-            this.owner = null;
-            this.mortgagePrice = _mortgagePrice;
-            this.borough = _borough;
+            this.Name = _name;
+            this.BuyPrice = _buyPrice;
+            this.Owner = null;
+            this.MortgagePrice = _mortgagePrice;
+            this.Borough = _borough;
             this.HousePrice = _borough.housePrice;
         }
 

@@ -63,7 +63,6 @@ namespace Monopoly
             Borough DBlue = new Borough(2, ConsoleColor.DarkBlue, 5000);
             cases[1] = new Street("Boulevard de Belleville", 6000, 3000, DBlue);
             DBlue.cases.Add((BuyableCase)cases[1]);
-            cases[1].borough = DBlue;
             cases[2] = new CommunityFund();
             cases[3] = new Street("Rue Lecourbe", 6000, 3000, DBlue);
             DBlue.cases.Add((BuyableCase)cases[3]);
@@ -364,7 +363,7 @@ namespace Monopoly
                 try
                 {
                     cc = c as BuyableCase;
-                    Console.BackgroundColor = cc.borough.color;
+                    Console.BackgroundColor = cc.Borough.color;
                     Console.Write("{0}", cc.Name);
                     Console.ResetColor();
                     for(int j = 0; j < cc.houses; j++)
