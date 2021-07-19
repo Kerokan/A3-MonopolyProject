@@ -1,5 +1,6 @@
-﻿# Monopoly Project
- **Project made by Thibault CHASSEFAIRE and Martin CAM**
+# Monopoly Project
+### Project made by Thibault CHASSEFAIRE and Martin CAM
+---
  ## Objectives
  
 The objective of this project is to create a functionnal Monopoly using Design Patterns.
